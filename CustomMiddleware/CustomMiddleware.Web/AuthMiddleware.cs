@@ -12,6 +12,7 @@ namespace MiddlewareWeb
         {
             _next = next;
         }
+        
         public async Task InvokeAsync(HttpContext context)
         {
             var username = context.Request.Query["username"].ToString();
@@ -23,6 +24,7 @@ namespace MiddlewareWeb
                 await context.Response.WriteAsync("Not authorized.");
                 return;
             }
+
             await _next(context);
         }
     }
